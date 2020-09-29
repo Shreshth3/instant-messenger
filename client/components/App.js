@@ -1,18 +1,6 @@
-import React, { Component, useState } from 'react';
-
-function MessageContainer({ messages, typingUser }) {
-  // console.log(messages);
-  const messagesDisplay = messages.map((message, idx) => {
-    return <p key={`${idx}-${message}`}>{message.msg}</p>;
-  });
-
-  return (
-    <div id="msg-container">
-      {messagesDisplay}
-      <p id="whos-typing">{typingUser}</p>
-    </div>
-  );
-}
+import React, { useState } from 'react';
+import MessageContainer from './MessageContainer';
+import SendMessage from './SendMessage';
 
 function App() {
   const [currMsg, setCurrMsg] = useState('');
@@ -29,45 +17,65 @@ function App() {
   ]);
   const [typingUser, setTypingUser] = useState('');
 
-  const socket = io.connect('http://localhost:3000');
+  // const socket = io.connect('http://localhost:3000');
 
-  socket.on('message', (data) => {
+  function addMessage(data) {
     const newState = messages.slice();
     newState.push(data);
     setMessages(newState);
     setCurrMsg('');
     console.log(data.msg);
-  });
+  }
 
-  socket.on('typing', (data) => {
+  // socket.on('message', (data) => {
+  //   const newState = messages.slice();
+  //   newState.push(data);
+  //   setMessages(newState);
+  //   setCurrMsg('');
+  //   console.log(data.msg);
+  // });
+
+  function userTyping(data) {
     const newState = `${data.user} is typing...`;
     setTypingUser(newState);
-  });
-
-  function sendMessage(event) {
-    event.preventDefault();
-    console.log(currMsg);
-    socket.emit('message', {
-      msg: currMsg,
-    });
   }
 
-  function typingMessage(event) {
-    console.log('typing a msg');
-    setCurrMsg(event.target.value);
-    if (currMsg !== '' && currMsg !== ' ') {
-      // Send message down web socket
-      socket.emit('typing', {
-        user: 'Someone',
-      });
-    }
-  }
+  // socket.on('typing', (data) => {
+  //   const newState = `${data.user} is typing...`;
+  //   setTypingUser(newState);
+  // });
+
+  // function sendMessage(event) {
+  //   event.preventDefault();
+  //   console.log(currMsg);
+  //   socket.emit('message', {
+  //     msg: currMsg,
+  //   });
+  // }
+
+  // function typingMessage(event) {
+  //   console.log('typing a msg');
+  //   setCurrMsg(event.target.value);
+  //   if (currMsg !== '' && currMsg !== ' ') {
+  //     // Send message down web socket
+  //     socket.emit('typing', {
+  //       user: 'Someone',
+  //     });
+  //   }
+  // }
 
   return (
     <div id="main-container">
       <h1>Instant Messenger</h1>
       <MessageContainer messages={messages} typingUser={typingUser} />
-      <form>
+      <SendMessage
+        // socket={socket}
+        currMsg={currMsg}
+        setCurrMsg={setCurrMsg}
+        addMessage={addMessage}
+        userTyping={userTyping}
+      />
+      {/* <form>
         <input
           type="text"
           id="msg"
@@ -83,7 +91,7 @@ function App() {
           onClick={(e) => sendMessage(e)}
           value="Send"
         />
-      </form>
+      </form> */}
     </div>
   );
 }
