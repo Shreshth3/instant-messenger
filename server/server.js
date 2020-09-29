@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const socket = require('socket.io');
 
 const app = express();
 const PORT = 3000;
@@ -14,4 +15,11 @@ app.get('/hi', (req, res) => {
   res.json('ok');
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
+const io = socket(server);
+io.on('connection', (currSocket) => {
+  currSocket.on('message', (data) => {
+    io.sockets.emit('message', data);
+  });
+});
