@@ -22,4 +22,9 @@ io.on('connection', (currSocket) => {
   currSocket.on('message', (data) => {
     io.sockets.emit('message', data);
   });
+
+  currSocket.on('typing', (data) => {
+    console.log('someone typing');
+    currSocket.broadcast.emit('typing', data);
+  });
 });

@@ -34,7 +34,7 @@ $primary-hover: rgb(136, 25, 211);
   align-items: center;
 
   height: 97%;
-  width: 60%;
+  width: 90%;
   border: none;
   border-radius: 5px;
   background-color: $bgd;
@@ -46,8 +46,6 @@ $primary-hover: rgb(136, 25, 211);
 
   height: 80%;
   width: 95%;
-
-  margin-bottom: 20px;
 }
 
 h1 {
@@ -66,6 +64,10 @@ input {
 
 p {
   color: white;
+}
+
+#whos-typing {
+  font-size: 8px;
 }
 
 #msg {
