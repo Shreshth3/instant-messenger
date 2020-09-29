@@ -2,7 +2,7 @@
 
 // Variables
 $bgd: #222;
-$primary: rgb(143, 29, 219);
+$primary: rgb(158, 72, 216);
 $primary-hover: rgb(136, 25, 211);
 
 @mixin flexCenter() {
@@ -48,6 +48,10 @@ $primary-hover: rgb(136, 25, 211);
   width: 95%;
 
   margin-bottom: 20px;
+}
+
+h1 {
+  color: $primary;
 }
 
 form {

@@ -43,6 +43,7 @@ function App() {
 
   return (
     <div id="main-container">
+      <h1>Instant Messenger</h1>
       <MessageContainer messages={messages} />
       <form>
         <input
