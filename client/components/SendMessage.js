@@ -7,6 +7,7 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   socket.on('typing', userTyping);
 
   function sendMessage(event) {
+    console.log(event);
     event.preventDefault();
     console.log('hi');
     console.log(currMsg);
