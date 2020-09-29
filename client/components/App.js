@@ -3,10 +3,10 @@ import React, { Component, useState } from 'react';
 function MessageContainer({ messages }) {
   // console.log(messages);
   const messagesDisplay = messages.map((message, idx) => {
-    return <p key={`${idx}=${message}`}>{message.msg}</p>;
+    return <p key={`${idx}-${message}`}>{message.msg}</p>;
   });
 
-  return <div>{messagesDisplay}</div>;
+  return <div id="msg-container">{messagesDisplay}</div>;
 }
 
 function App() {
@@ -19,11 +19,9 @@ function App() {
       msg: 'whats up?',
     },
     {
-      msg: 'coding',
+      msg: 'hey!',
     },
   ]);
-  // console.log(`msgs are: ${messages}`);
-  // messages.forEach((message) => console.log(message));
 
   const socket = io.connect('http://localhost:3000');
 
@@ -44,7 +42,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div id="main-container">
       <MessageContainer messages={messages} />
       <form>
         <input
@@ -57,9 +55,10 @@ function App() {
         />
         <input
           type="submit"
+          id="send-btn"
           name="send"
           onClick={(e) => sendMessage(e)}
-          value="Send message!"
+          value="Send"
         />
       </form>
     </div>
