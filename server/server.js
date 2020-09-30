@@ -27,10 +27,6 @@ app.use(cookieParser());
 app.use('/create-account', createAccountApi);
 app.use('/sign-in', signInApi);
 
-app.get('/hi', (req, res) => {
-  res.json('ok');
-});
-
 // Send index.html file when user loads the page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
