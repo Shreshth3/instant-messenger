@@ -7,13 +7,20 @@ function Login() {
       <h1 id="title">Instant Messenger</h1>
       {/* </div> */}
       <form id="login-form">
-        <label>Username:</label>
-        <input type="text" />
+        <div>
+          <label>Username: </label>
+          <input type="text" />
+        </div>
         <br />
-        <label>Password:</label>
-        <input type="text" />
+        <div>
+          <label>Password: </label>
+          <input type="text" />
+        </div>
         <br />
-        <input type="submit" id="sign-in-btn" alue="Sign in" />
+        <div>
+          <input type="submit" id="create-act-btn" value="Create account" />
+          <input type="submit" id="sign-in-btn" value="Sign in" />
+        </div>
       </form>
     </div>
   );

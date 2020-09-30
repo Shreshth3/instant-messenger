@@ -32,7 +32,7 @@ function App() {
     setTypingUser(newState);
   }
 
-  if (!loggedIn) {
+  if (loggedIn) {
     return (
       <div id="main-container">
         <h1>Instant Messenger</h1>

@@ -53,7 +53,7 @@ h1 {
   color: $primary;
 }
 
-message-form {
+#message-form {
   width: 95%;
   height: 10%;
 }
@@ -106,6 +106,12 @@ p {
 
 #title {
   font-size: 30px;
+}
+
+#create-act-btn {
+  background-color: $primary;
+  color: white;
+  margin-right: 10px;
 }
 
 #sign-in-btn {
