@@ -6,8 +6,6 @@ function Login() {
 
   function createAccount(event) {
     event.preventDefault();
-    console.log(`Username: ${username}`);
-    console.log(`Password: ${password}`);
     fetch('/create-account', {
       headers: {
         Accept: 'application/json',
@@ -22,6 +20,15 @@ function Login() {
 
   function signIn() {
     event.preventDefault();
+    console.log(`sending info! \n${username}\n${password}`);
+    fetch('/sign-in', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    });
   }
 
   return (
