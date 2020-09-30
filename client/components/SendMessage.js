@@ -8,14 +8,12 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
 
   function sendMessage(event) {
     event.preventDefault();
-    console.log(currMsg);
     socket.emit('message', {
       msg: currMsg,
     });
   }
 
   function typingMessage(event) {
-    console.log('typing a msg');
     setCurrMsg(event.target.value);
     if (currMsg !== '' && currMsg !== ' ') {
       // Send message down web socket

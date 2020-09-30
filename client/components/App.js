@@ -46,7 +46,7 @@ function App() {
       </div>
     );
   } else {
-    return <Login />;
+    return <Login setLoggedIn={setLoggedIn} />;
   }
 }
 

@@ -32,6 +32,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.7",
     "react": "^16.13.1",

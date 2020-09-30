@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Login() {
+function Login({ setLoggedIn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,13 +14,11 @@ function Login() {
       method: 'POST',
       body: JSON.stringify({ username, password }),
     });
-    // console.log('hey');
     alert('Your account has been created! Now try logging in.');
   }
 
   function signIn() {
     event.preventDefault();
-    console.log(`sending info! \n${username}\n${password}`);
     fetch('/sign-in', {
       headers: {
         Accept: 'application/json',
@@ -28,7 +26,21 @@ function Login() {
       },
       method: 'POST',
       body: JSON.stringify({ username, password }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.loggedIn) {
+          setLoggedIn(true);
+        } else {
+          alert(
+            'Error: Invalid username and/or password. Please try again or create an account.'
+          );
+        }
+      })
+      .catch((err) => {
+        alert('There was an error while processing your login attempt.');
+        console.log(`ERROR: ${err}`);
+      });
   }
 
   return (

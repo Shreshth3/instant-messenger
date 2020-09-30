@@ -6,12 +6,12 @@ const router = express();
 router.post(
   '/',
   (req, res, next) => {
-    console.log(req.body);
     const { username, password } = req.body;
     User.findOne({ username })
       .then((result) => {
         if (result && password === result.password) {
           res.locals.loggedIn = true;
+          res.cookie('username', username);
         } else {
           res.locals.loggedIn = false;
         }
