@@ -1,6 +1,16 @@
 import React from 'react';
 
 function Login() {
+  function createAccount(event) {
+    event.preventDefault();
+    fetch('/create-account');
+    console.log('hey');
+  }
+
+  function signIn() {
+    event.preventDefault();
+  }
+
   return (
     <div id="login-container">
       {/* <div id="title-bar"> */}
@@ -18,8 +28,18 @@ function Login() {
         </div>
         <br />
         <div>
-          <input type="submit" id="create-act-btn" value="Create account" />
-          <input type="submit" id="sign-in-btn" value="Sign in" />
+          <input
+            type="submit"
+            id="create-act-btn"
+            value="Create account"
+            onClick={createAccount}
+          />
+          <input
+            type="submit"
+            id="sign-in-btn"
+            value="Sign in"
+            onClick={signIn}
+          />
         </div>
       </form>
     </div>

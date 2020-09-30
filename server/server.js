@@ -1,13 +1,17 @@
 const express = require('express');
 const path = require('path');
-const socket = require('socket.io');
 
 const app = express();
 const PORT = 3000;
 
+const socket = require('socket.io');
+const createAccountApi = require('./apis/createAccountApi');
+
+app.use(express.json());
+
+app.use('/create-account', createAccountApi);
+
 app.get('/', (req, res) => {
-  // res.sendStatus(200);
-  // res.send('hey!');
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
