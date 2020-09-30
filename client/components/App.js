@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MessageContainer from './MessageContainer';
 import SendMessage from './SendMessage';
+import Login from './Login';
 
 function App() {
   const [currMsg, setCurrMsg] = useState('');
@@ -16,15 +17,14 @@ function App() {
     },
   ]);
   const [typingUser, setTypingUser] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   function addMessage(data) {
-    console.log('test1');
     const newState = messages.slice();
     newState.push(data);
     setMessages(newState);
     setCurrMsg('');
     console.log(data.msg);
-    console.log('test2');
   }
 
   function userTyping(data) {
@@ -32,19 +32,22 @@ function App() {
     setTypingUser(newState);
   }
 
-  return (
-    <div id="main-container">
-      <h1>Instant Messenger</h1>
-      <MessageContainer messages={messages} typingUser={typingUser} />
-      <SendMessage
-        // socket={socket}
-        currMsg={currMsg}
-        setCurrMsg={setCurrMsg}
-        addMessage={addMessage}
-        userTyping={userTyping}
-      />
-    </div>
-  );
+  if (!loggedIn) {
+    return (
+      <div id="main-container">
+        <h1>Instant Messenger</h1>
+        <MessageContainer messages={messages} typingUser={typingUser} />
+        <SendMessage
+          currMsg={currMsg}
+          setCurrMsg={setCurrMsg}
+          addMessage={addMessage}
+          userTyping={userTyping}
+        />
+      </div>
+    );
+  } else {
+    return <Login />;
+  }
 }
 
 export default App;

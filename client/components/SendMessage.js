@@ -3,13 +3,11 @@ import React from 'react';
 function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   const socket = io.connect('http://localhost:3000');
 
-  socket.on('message', (data) => sendMessage(data));
+  socket.on('message', addMessage);
   socket.on('typing', userTyping);
 
   function sendMessage(event) {
-    console.log(event);
     event.preventDefault();
-    console.log('hi');
     console.log(currMsg);
     socket.emit('message', {
       msg: currMsg,
@@ -28,7 +26,7 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   }
 
   return (
-    <form>
+    <form id="message-form">
       <input
         type="text"
         id="msg"
@@ -41,7 +39,7 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
         type="submit"
         id="send-btn"
         name="send"
-        onClick={(event) => sendMessage(event)}
+        onClick={(e) => sendMessage(e)}
         value="Send"
       />
     </form>
