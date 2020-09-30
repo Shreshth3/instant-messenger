@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   function createAccount(event) {
     event.preventDefault();
-    fetch('/create-account');
-    console.log('hey');
+    console.log(`Username: ${username}`);
+    console.log(`Password: ${password}`);
+    fetch('/create-account', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    });
+    // console.log('hey');
+    alert('Your account has been created! Now try logging in.');
   }
 
   function signIn() {
@@ -19,12 +32,18 @@ function Login() {
       <form id="login-form">
         <div>
           <label>Username: </label>
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(event) => setUsername(event.target.value)}
+          />
         </div>
         <br />
         <div>
           <label>Password: </label>
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(event) => setPassword(event.target.value)}
+          />
         </div>
         <br />
         <div>
