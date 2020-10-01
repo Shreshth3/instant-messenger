@@ -20,3 +20,12 @@ This is an instant messaging tool that enables real-time communication between m
 - Database: MongoDB
 
 ## Setting up a local instance
+
+1. Clone the repo
+   Navigate to the directory in which you would like to download this repo. Run `git clone https://github.com/Shreshth3/instant-messenger.git`. If you prefer, you can also fork the repo and then clone your forked repo, but this is up to you.
+
+2. Install dependencies
+
+3. Run the application
+
+4. Test it out!
