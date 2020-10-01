@@ -21,15 +21,15 @@ This is an instant messaging tool that enables real-time communication between m
 
 ## Setting up a local instance
 
-1. Clone the repo
+1. Clone the repo  
    Navigate to the directory in which you would like to download this repo. Run  
    `git clone https://github.com/Shreshth3/instant-messenger.git`. If you prefer, you can also fork the repo and then clone your forked repo, but this is up to you.
 
-2. Install dependencies
+2. Install dependencies  
    Let's start by navigating into this repo using `cd instant-messenger`. Now, you'll need to install the dependencies that this project will need to run. To do so, run `npm install`.
 
-3. Run the application
+3. Run the application  
    Now that you've cloned the repo and installed your dependencies, simply start your application using `npm run dev`.
 
-4. Test it out!
+4. Test it out!  
    It's time to see the instant messenger in action! If this wasn't already done for you, go to http://localhost:8080/ in your browser. You'll want to open this in at least 2 different tabs. Now, create 1 account for each tab and sign in. You're good to go! Simply start sending messages and you should be able to communicate between tabs.
