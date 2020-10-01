@@ -22,8 +22,8 @@ This is an instant messaging tool that enables real-time communication between m
 ## Setting up a local instance
 
 1. **Clone the repo**  
-   Navigate to the directory in which you would like to download this repo. Run  
-   `git clone https://github.com/Shreshth3/instant-messenger.git`. If you prefer, you can also fork the repo and then clone your forked repo, but this is up to you.
+   Navigate to the directory in which you would like to download this repo. Now, run  
+   `git clone https://github.com/Shreshth3/instant-messenger.git`. If you prefer, you can fork this repo and clone your forked repo instead, but this is up to you.
 
 2. **Install dependencies**  
    Let's start by navigating into this repo using `cd instant-messenger`. Now, you'll need to install the dependencies that this project will need to run. To do so, run `npm install`.
