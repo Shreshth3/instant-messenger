@@ -69,6 +69,7 @@ function Login({ setLoggedIn, setCurrUser }) {
           <input
             type="text"
             onChange={(event) => setUsername(event.target.value)}
+            autoComplete="off"
           />
         </div>
         <br />
@@ -76,8 +77,9 @@ function Login({ setLoggedIn, setCurrUser }) {
         <div>
           <label>Password: </label>
           <input
-            type="text"
+            type="password"
             onChange={(event) => setPassword(event.target.value)}
+            autoComplete="off"
           />
         </div>
         <br />

@@ -12,21 +12,7 @@ and the SendMessage component.
 function App() {
   // State:
   const [currMsg, setCurrMsg] = useState(''); // Current message (being typed by the user)
-  const [messages, setMessages] = useState([
-    // Array with all of the messages
-    {
-      user: 'Ava',
-      msg: 'hi there!',
-    },
-    {
-      user: 'Thomas',
-      msg: 'whats up?',
-    },
-    {
-      user: 'Ava',
-      msg: 'hey!',
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [currUser, setCurrUser] = useState('');
   const [typingUser, setTypingUser] = useState(''); // Which user is currently typing
   const [loggedIn, setLoggedIn] = useState(false); // Is the current user logged in
