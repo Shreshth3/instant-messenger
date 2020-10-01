@@ -13,6 +13,8 @@ router.post(
     // Find the first user in our database with the provided username
     User.findOne({ username })
       .then((result) => {
+        console.log('here is result');
+        console.log(result);
         // If the user has provided the correct password...
         if (result && password === result.password) {
           res.locals.loggedIn = true; // Store the successful login for future use

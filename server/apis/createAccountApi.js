@@ -9,6 +9,8 @@ router.post(
   // This function creates a new user
   (req, res, next) => {
     const { username, password } = req.body;
+    console.log(username);
+    console.log(password);
 
     // Create a new user entry in our database with the provided username and password
     User.create({
@@ -20,6 +22,7 @@ router.post(
         console.log(
           `Successfully entered user \"${result.username}\" into the database.`
         );
+        return next();
       })
       // If an error is thrown by our query, invoke the global error handler
       .catch((err) => {
@@ -30,7 +33,7 @@ router.post(
   // Once we've successfully created a new user in our database, send a success status code
   // to the client
   (req, res) => {
-    res.sendStatus(200);
+    res.status(200).json('hello');
   }
 );
 

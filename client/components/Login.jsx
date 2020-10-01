@@ -14,12 +14,14 @@ function Login({ setLoggedIn }) {
     event.preventDefault();
     fetch('/create-account', {
       headers: {
-        Accept: 'application/json',
+        // Accept: 'application/json',
         'Content-type': 'application/json',
       },
       method: 'POST',
       body: JSON.stringify({ username, password }),
-    });
+    })
+      .then((result) => result.json())
+      .then((data) => console.log(data));
     alert('Your account has been created! Now try logging in.');
   }
 
@@ -28,7 +30,7 @@ function Login({ setLoggedIn }) {
     event.preventDefault();
     fetch('/sign-in', {
       headers: {
-        Accept: 'application/json',
+        // Accept: 'application/json',
         'Content-type': 'application/json',
       },
       method: 'POST',

@@ -43,6 +43,11 @@ const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 // Establish web socket
 const io = socket(server);
 io.on('connection', (currSocket) => {
+  console.log('CONNECTED\n\n\n\n\n\n\n\n\n');
+  currSocket.onerror((err) => {
+    console.log(`ERROR: SOCKET CLOSED: ${err}`);
+  });
+
   // If we receive the "message" event...
   currSocket.on('message', (data) => {
     // Send a "message" event with the received data to all clients connected via WebSocket

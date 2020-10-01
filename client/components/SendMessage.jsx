@@ -1,5 +1,10 @@
 import React from 'react';
 
+/*
+This component has the logic for sending messages. Also note that the frontend logic for the
+WebSocket is in this file.
+*/
+
 function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   // Create a socket linked with the socket on our server
   const socket = io.connect('http://localhost:3000');
@@ -9,7 +14,7 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   socket.on('typing', userTyping);
 
   // When the user has sent a message, we need to send this down the WebSocket
-  // so that the server can inform notify any other clients
+  // so that the server can notify any other clients
   function sendMessage(event) {
     event.preventDefault();
     socket.emit('message', {
@@ -17,6 +22,8 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
     });
   }
 
+  // When the current user starts typing a message, we want to send a "typing" event down the WebSocket
+  // so that the server can notify other clients
   function typingMessage(event) {
     setCurrMsg(event.target.value);
     if (currMsg !== '' && currMsg !== ' ') {
@@ -29,6 +36,7 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
 
   return (
     <form id="message-form">
+      {/* Input field where messages are typed */}
       <input
         type="text"
         id="msg"
@@ -37,6 +45,7 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
         onChange={(event) => typingMessage(event)}
         value={currMsg}
       />
+      {/* Button used to send the current message */}
       <input
         type="submit"
         id="send-btn"

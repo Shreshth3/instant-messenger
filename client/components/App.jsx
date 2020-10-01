@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import MessageContainer from './MessageContainer';
-import SendMessage from './SendMessage';
-import Login from './Login';
+import MessageContainer from './MessageContainer.jsx';
+import SendMessage from './SendMessage.jsx';
+import Login from './Login.jsx';
 
 /*
 This is the highest level component. It contains key parts of the application's state and
