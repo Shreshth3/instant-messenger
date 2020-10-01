@@ -96,7 +96,7 @@ p {
   border-radius: 5px;
 
   height: 80%;
-  width: 80%;
+  width: 90%;
 }
 
 #login-form {
@@ -127,4 +127,9 @@ label {
 
 span {
   color: $primary;
+}
+
+.message {
+  margin-block-start: 0.25em;
+  margin-block-end: 0.25em;
 }

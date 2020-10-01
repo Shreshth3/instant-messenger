@@ -8,7 +8,7 @@ function MessageContainer({ currUser, messages, typingUser }) {
   // Iterate over all the messages and stick them inside of a <p> tag
   const messagesDisplay = messages.map((message, idx) => {
     return (
-      <p key={`${idx}-${message}`}>
+      <p key={`${idx}-${message}`} className="message">
         <span>{message.user}: </span>
         {message.msg}
       </p>
