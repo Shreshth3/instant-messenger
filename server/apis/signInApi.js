@@ -21,7 +21,7 @@ router.post(
         }
 
         // If a user with the provided username exists, we compare the provided password (post-encryption)
-        // with the real password (also post-encryption).
+        // with the real password (also post-encryption)
         bcrypt.compare(password, result.password, (err, comparisonResult) => {
           // If we are unable to make this comparison, invoke the global error handler
           if (err) {
@@ -39,17 +39,6 @@ router.post(
           res.locals.loggedIn = false;
           return next();
         });
-
-        // If the user has provided the correct password...
-        // if (result && password === result.password) {
-        //   res.locals.loggedIn = true; // Store the successful login for future use
-        //   res.cookie('username', username, { httpOnly: true }); // Add a cookie containing the username
-        // }
-        // If no user was found or if the provided password was incorrect...
-        // else {
-        //   res.locals.loggedIn = false; // Store the failed login for future use
-        // }
-        // return next();
       })
       // If an error is thrown by our query, invoke the global error handler
       .catch((err) => {
