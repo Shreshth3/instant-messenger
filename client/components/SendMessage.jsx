@@ -35,20 +35,22 @@ function SendMessage({
   // When the current user starts typing a message, we want to send a "typing" event down the WebSocket
   // so that the server can notify other clients
   function typingMessage(event) {
-    setCurrMsg(event.target.value);
-    console.log('onchange invoked');
-    console.log(currMsg);
+    const unfinishedMsg = event.target.value;
+
     // If the current message isn't empty, send a "typing" event down the WebSocket
-    if (event.target.value !== '' && event.target.value !== ' ') {
-      console.log('talk to websocket');
+    if (unfinishedMsg !== '') {
       socket.emit('typing', {
         user: currUser,
       });
     } else {
-      console.log('clear!');
-      setTypingUser('');
-      console.log(typingUser);
+      // USE THROTTLE AND DEBOUNCE
+      socket.emit('typing', {
+        user: '',
+      });
+      // here i should use websocket to tell ALL clients to not say someone typing
     }
+
+    setCurrMsg(unfinishedMsg);
   }
 
   return (
