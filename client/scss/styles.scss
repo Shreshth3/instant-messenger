@@ -9,7 +9,7 @@ $primary-hover: rgb(136, 25, 211);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
 * {
@@ -18,9 +18,9 @@ $primary-hover: rgb(136, 25, 211);
 
 #root {
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   height: 100%;
 
   // @include flexCenter();
@@ -30,8 +30,8 @@ $primary-hover: rgb(136, 25, 211);
 
 #main-container {
   @include flexCenter();
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
 
   height: 97%;
   width: 90%;
@@ -43,6 +43,7 @@ $primary-hover: rgb(136, 25, 211);
 #msg-container {
   @include flexCenter();
   justify-content: flex-end;
+  align-items: flex-start;
 
   height: 80%;
   width: 95%;
@@ -52,7 +53,7 @@ h1 {
   color: $primary;
 }
 
-form {
+#message-form {
   width: 95%;
   height: 10%;
 }
@@ -68,6 +69,7 @@ p {
 
 #whos-typing {
   font-size: 8px;
+  height: 8px;
 }
 
 #msg {
@@ -85,4 +87,44 @@ p {
   }
 
   color: white;
+}
+
+#login-container {
+  @include flexCenter();
+
+  background-color: $bgd;
+  border-radius: 5px;
+
+  height: 80%;
+  width: 80%;
+}
+
+#login-form {
+  @include flexCenter();
+  // justify-content: center;
+  align-items: start;
+}
+
+#title {
+  font-size: 30px;
+}
+
+#create-act-btn {
+  background-color: $primary;
+  color: white;
+  margin-right: 10px;
+}
+
+#sign-in-btn {
+  background-color: $primary;
+  color: white;
+}
+
+label {
+  display: inline;
+  color: white;
+}
+
+span {
+  color: $primary;
 }
