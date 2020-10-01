@@ -10,8 +10,8 @@ This is an instant messaging tool that enables real-time communication between m
 
 ## Table of Contents
 
-1. Tech stack
-2. Setting up a local instance
+1. [Tech stack](#Tech Stack)
+2. [Setting up a local instance](#Setting up a local instance)
 
 ## Tech Stack
 
