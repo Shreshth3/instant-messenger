@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 /*
 This component has the logic for sending messages. Also note that the frontend logic for the
@@ -47,7 +48,6 @@ function SendMessage({
       socket.emit('typing', {
         user: '',
       });
-      // here i should use websocket to tell ALL clients to not say someone typing
     }
 
     setCurrMsg(unfinishedMsg);
@@ -61,7 +61,7 @@ function SendMessage({
         id="msg"
         name="message"
         placeholder="Type a message..."
-        onChange={(event) => typingMessage(event)}
+        onChange={(event) => _.debounce(typingMessage(event))()}
         value={currMsg}
       />
       {/* Button used to send the current message */}
@@ -69,7 +69,7 @@ function SendMessage({
         type="submit"
         id="send-btn"
         name="send"
-        onClick={(e) => sendMessage(e)}
+        onClick={(event) => sendMessage(event)}
         value="Send"
       />
     </form>
