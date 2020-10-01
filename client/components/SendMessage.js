@@ -1,11 +1,15 @@
 import React from 'react';
 
 function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
+  // Create a socket linked with the socket on our server
   const socket = io.connect('http://localhost:3000');
 
+  // Invoke the appropriate function upon receiving a message from the WebSocket
   socket.on('message', addMessage);
   socket.on('typing', userTyping);
 
+  // When the user has sent a message, we need to send this down the WebSocket
+  // so that the server can inform notify any other clients
   function sendMessage(event) {
     event.preventDefault();
     socket.emit('message', {
