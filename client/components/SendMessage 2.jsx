@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 /*
 This component has the logic for sending messages. Also note that the frontend logic for the
@@ -36,20 +35,20 @@ function SendMessage({
   // When the current user starts typing a message, we want to send a "typing" event down the WebSocket
   // so that the server can notify other clients
   function typingMessage(event) {
-    const unfinishedMsg = event.target.value;
-
+    setCurrMsg(event.target.value);
+    console.log('onchange invoked');
+    console.log(currMsg);
     // If the current message isn't empty, send a "typing" event down the WebSocket
-    if (unfinishedMsg !== '') {
+    if (event.target.value !== '' && event.target.value !== ' ') {
+      console.log('talk to websocket');
       socket.emit('typing', {
         user: currUser,
       });
     } else {
-      socket.emit('typing', {
-        user: '',
-      });
+      console.log('clear!');
+      setTypingUser('');
+      console.log(typingUser);
     }
-
-    setCurrMsg(unfinishedMsg);
   }
 
   return (
@@ -60,8 +59,7 @@ function SendMessage({
         id="msg"
         name="message"
         placeholder="Type a message..."
-        // The next line
-        onChange={(event) => _.throttle(typingMessage(event), 500)()}
+        onChange={(event) => typingMessage(event)}
         value={currMsg}
       />
       {/* Button used to send the current message */}
@@ -69,7 +67,7 @@ function SendMessage({
         type="submit"
         id="send-btn"
         name="send"
-        onClick={(event) => sendMessage(event)}
+        onClick={(e) => sendMessage(e)}
         value="Send"
       />
     </form>
