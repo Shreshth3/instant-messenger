@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 This component handles authentication. It is where users can create an account or sign in.
 */
 
-function Login({ setLoggedIn }) {
+function Login({ setLoggedIn, setCurrUser }) {
   // State:
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,6 +40,7 @@ function Login({ setLoggedIn }) {
       .then((data) => {
         // If the user logged in successfully, update the state of App
         if (data.loggedIn) {
+          setCurrUser(username);
           setLoggedIn(true);
         }
         // If the user did NOT log in successfully, display an alert

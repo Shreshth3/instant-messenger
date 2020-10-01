@@ -43,11 +43,6 @@ const server = app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 // Establish web socket
 const io = socket(server);
 io.on('connection', (currSocket) => {
-  console.log('CONNECTED\n\n\n\n\n\n\n\n\n');
-  currSocket.onerror((err) => {
-    console.log(`ERROR: SOCKET CLOSED: ${err}`);
-  });
-
   // If we receive the "message" event...
   currSocket.on('message', (data) => {
     // Send a "message" event with the received data to all clients connected via WebSocket
@@ -58,7 +53,6 @@ io.on('connection', (currSocket) => {
   currSocket.on('typing', (data) => {
     // Send a "typing" event with the received data to all clients EXCEPT the client who sent this event
     currSocket.broadcast.emit('typing', data);
-    // CHANGE CURRSOCKET TO IO ON LINE ABOVE
   });
 });
 

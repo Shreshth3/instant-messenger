@@ -13,12 +13,10 @@ router.post(
     // Find the first user in our database with the provided username
     User.findOne({ username })
       .then((result) => {
-        console.log('here is result');
-        console.log(result);
         // If the user has provided the correct password...
         if (result && password === result.password) {
           res.locals.loggedIn = true; // Store the successful login for future use
-          res.cookie('username', username); // Add a cookie containing the username
+          res.cookie('username', username, { httpOnly: true }); // Add a cookie containing the username
         }
         // If no user was found or if the provided password was incorrect...
         else {

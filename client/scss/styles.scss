@@ -69,6 +69,7 @@ p {
 
 #whos-typing {
   font-size: 8px;
+  height: 8px;
 }
 
 #msg {
@@ -94,8 +95,8 @@ p {
   background-color: $bgd;
   border-radius: 5px;
 
-  height: 60%;
-  width: 60%;
+  height: 80%;
+  width: 80%;
 }
 
 #login-form {
@@ -122,4 +123,8 @@ p {
 label {
   display: inline;
   color: white;
+}
+
+span {
+  color: $primary;
 }

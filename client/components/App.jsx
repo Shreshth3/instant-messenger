@@ -15,15 +15,19 @@ function App() {
   const [messages, setMessages] = useState([
     // Array with all of the messages
     {
+      user: 'Ava',
       msg: 'hi there!',
     },
     {
+      user: 'Thomas',
       msg: 'whats up?',
     },
     {
+      user: 'Ava',
       msg: 'hey!',
     },
   ]);
+  const [currUser, setCurrUser] = useState('');
   const [typingUser, setTypingUser] = useState(''); // Which user is currently typing
   const [loggedIn, setLoggedIn] = useState(false); // Is the current user logged in
 
@@ -33,11 +37,13 @@ function App() {
     newState.push(data);
     setMessages(newState);
     setCurrMsg(''); // Clear the current message since we've sent it
+    setTypingUser('');
   }
 
   // Update the state to reflect which user is currently typing
   function userTyping(data) {
-    const newState = `${data.user} is typing...`;
+    console.log('userTyping invoked');
+    const newState = data.user;
     setTypingUser(newState);
   }
 
@@ -46,19 +52,26 @@ function App() {
     return (
       <div id="main-container">
         <h1>Instant Messenger</h1>
-        <MessageContainer messages={messages} typingUser={typingUser} />
+        <MessageContainer
+          currUser={currUser}
+          messages={messages}
+          typingUser={typingUser}
+        />
         <SendMessage
+          currUser={currUser}
           currMsg={currMsg}
           setCurrMsg={setCurrMsg}
           addMessage={addMessage}
           userTyping={userTyping}
+          setTypingUser={setTypingUser}
+          typingUser={typingUser}
         />
       </div>
     );
   }
   // If the user is not logged in, display the login page
   else {
-    return <Login setLoggedIn={setLoggedIn} />;
+    return <Login setLoggedIn={setLoggedIn} setCurrUser={setCurrUser} />;
   }
 }
 

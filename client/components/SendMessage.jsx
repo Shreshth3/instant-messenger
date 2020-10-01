@@ -5,7 +5,15 @@ This component has the logic for sending messages. Also note that the frontend l
 WebSocket is in this file.
 */
 
-function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
+function SendMessage({
+  currUser,
+  currMsg,
+  setCurrMsg,
+  addMessage,
+  userTyping,
+  setTypingUser,
+  typingUser,
+}) {
   // Create a socket linked with the socket on our server
   const socket = io.connect('http://localhost:3000');
 
@@ -17,7 +25,9 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   // so that the server can notify any other clients
   function sendMessage(event) {
     event.preventDefault();
+    setTypingUser('');
     socket.emit('message', {
+      user: currUser,
       msg: currMsg,
     });
   }
@@ -26,11 +36,18 @@ function SendMessage({ currMsg, setCurrMsg, addMessage, userTyping }) {
   // so that the server can notify other clients
   function typingMessage(event) {
     setCurrMsg(event.target.value);
-    if (currMsg !== '' && currMsg !== ' ') {
-      // Send message down web socket
+    console.log('onchange invoked');
+    console.log(currMsg);
+    // If the current message isn't empty, send a "typing" event down the WebSocket
+    if (event.target.value !== '' && event.target.value !== ' ') {
+      console.log('talk to websocket');
       socket.emit('typing', {
-        user: 'Someone',
+        user: currUser,
       });
+    } else {
+      console.log('clear!');
+      setTypingUser('');
+      console.log(typingUser);
     }
   }
 
